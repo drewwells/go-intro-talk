@@ -1,0 +1,116 @@
+Intro to Go
+May 2018
+
+Drew Wells
+Oracle Cloud Infrastructure
+Principal Member of Technical Staff
+drew.wells00@gmail.com
+
+* What is go?
+
+Object Oriented - Structurally typed
+Pragmatic
+Small Language
+Concurrency, channels
+.image usergroups.png
+
+* Hello World
+
+.play -edit starter.go
+
+
+* IMPROVE THIS - Go disected
+
+- package
+
+    package main
+
+- exported types
+
+    type MyString string
+
+    type mystring string
+
+    fmt.Println
+
+* Interfaces
+
+    type Handler string
+
+    func (h Handler) ServeHTTP
+
+
+* JSON encoding
+
+
+* Time parsing
+
+.play time.go
+
+
+* Go tools
+
+- go doc
+- go build
+- go run
+- go install
+
+
+* go get
+
+    -> % go get -v -u golang.org/x/tools/cmd/present 2>&1 >/dev/null | grep Fetching
+
+    Fetching https://golang.org/x/tools/cmd/present?go-get=1
+    Fetching https://golang.org/x/tools?go-get=1
+    Fetching https://golang.org/x/tools/godoc/static?go-get=1
+    Fetching https://golang.org/x/tools/playground/socket?go-get=1
+    Fetching https://golang.org/x/net/websocket?go-get=1
+    Fetching https://golang.org/x/net?go-get=1
+    Fetching https://golang.org/x/tools/present?go-get=1
+
+
+* go doc
+
+
+    // ListenAndServe listens on the TCP network address addr
+    // and then calls Serve with handler to handle requests
+    // on incoming connections.
+    // Accepted connections are configured to enable TCP keep-alives.
+    // Handler is typically nil, in which case the DefaultServeMux is
+    // used.
+    //
+    // ListenAndServe always returns a non-nil error.
+    func ListenAndServe(addr string, handler Handler) error {
+    	server := &Server{Addr: addr, Handler: handler}
+    	return server.ListenAndServe()
+    }
+
+
+* testing
+
+
+* benchmarks
+
+
+* tests that live in the docs
+
+    func ExamplePrint4() {
+      fmt.Println(4)
+
+      // Output: 4
+    }
+
+
+* Benefits of Go
+
+- Single binary
+- go test -v ./...
+- go build -o /file/path/myproject
+
+- complete TLS, HTTP2 implementation
+- gRPC, excellent for designing microservices
+
+* More Reading
+
+.link https://github.com/golang/example
+.link https://golang.org/ref/spec
