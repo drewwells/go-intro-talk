@@ -88,6 +88,11 @@ Concurrency, channels
 
 * testing
 
+** gofmt
+
+- consistent formatting of code
+- widely used
+- ends discussions about tabs vs spaces
 
 * benchmarks
 
