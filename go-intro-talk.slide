@@ -48,22 +48,39 @@ Concurrency
 
 * Interfaces
 
-.play -edit interface.go
+.play -edit interface/main.go
 
 : Anything that implements ServeHTTP can act as an http.Handler
 
+* Enforce Interfaces
+
+
+    // from fmt.Stringer
+    type Stringer interface {
+        String() string
+    }
+
+    var _ fmt.Stringer = Greeting("")
+
+    type Greeting string
+
+    func (h Greeting) String() string {
+        return fmt.Sprintf("Greeting, %s", string(h))
+    }
+
+.link https://golang.org/pkg/fmt/#Stringer
 
 * Using interfaces
 
-.code -edit simpleserver.go
+.code -edit simpleserver/main.go
 
 * JSON
 
-.play -edit jsonencoding.go /^func main/,/^}/
+.play -edit jsonencoding/main.go /^func main/,/^}/
 
 * Time parsing
 
-.play time.go
+.play -edit time/main.go
 
 
 * Go tools
@@ -72,6 +89,9 @@ Concurrency
 - go run
 - go install
 
+: all included in the go binary
+: build packages, run individual go files
+: install builds the package and installs it to $GOPATH/bin
 
 * go get
 
@@ -102,7 +122,6 @@ Concurrency
     	return server.ListenAndServe()
     }
 
-
 .link https://godoc.org/net/http#ListenAndServe
 
 or host locally with `godoc -http=:6060`
@@ -115,32 +134,49 @@ or host locally with `godoc -http=:6060`
 
 * testing
 
-** gofmt
+
+* Using testable examples
+
+.code -edit doc/print4.go
+
+    -> % go test doc_test.go -v
+    === RUN   ExamplePrint4
+    --- PASS: ExamplePrint4 (0.00s)
+    PASS
+
+* gofmt
 
 - consistent formatting of code
 - widely used
-- ends discussions about tabs vs spaces
+- no work time lost discussing tabs vs spaces
+
+.image accident.gif 400 _
+
+: can easily scan any Go file
+: entire team uses it, since it's easily integreated into most IDEs
+: CI can enforce it if desired
 
 * benchmarks
 
+.code -edit benchmark_test.go
 
-* tests that live in the docs
-
-    func ExamplePrint4() {
-      fmt.Println(4)
-
-      // Output: 4
-    }
-
+    -> % go test -bench=. benchmark_test.go
+    goos: darwin
+    goarch: amd64
+    BenchmarkHello-8        20000000                58.3 ns/op
+    PASS
+    ok      command-line-arguments  1.242s
 
 * Benefits of Go
 
 - Single binary
-- go test -v ./...
-- go build -o /file/path/myproject
+- Standard tools go test, go build
+- complete TLS and HTTP2 implementation
+- gRPC
 
-- complete TLS, HTTP2 implementation
-- gRPC, excellent for designing microservices
+: Testing is very easy
+: Compile times are fast
+: gRPC excellent for microservice design
 
 * More Reading
 
