@@ -8,18 +8,23 @@ drew.wells00@gmail.com
 
 * What is go?
 
-Object Oriented - Structurally typed
+Object Oriented
+Garbage collection
 Pragmatic
 Small Language
-Concurrency, channels
+Concurrency
 .image usergroups.png
+
+: Structurally typed - enables interfaces
+: Language kept purposely small all founders had to give thumbs up to include a feature
+: Goroutines, channels
 
 * Hello World
 
 .play -edit starter.go
 
 
-* IMPROVE THIS - Go disected
+* file.go dissected
 
 - package
 
@@ -27,21 +32,43 @@ Concurrency, channels
 
 - exported types
 
-    type MyString string
+    type MyString string // public
 
-    type mystring string
+    type mystring string // private
 
-    fmt.Println
+    fmt.Println // public method
+
+: Exported types are defined by their casing
+: One of my favorite things about Go
+
+- variable assignment
+
+    var text string = "Welcome to Go"
+    text := "Welcome to Go"
 
 * Interfaces
 
-    type Handler string
+    // Handler defined in the net/http package
+    type Handler interface {
+        ServeHTTP(ResponseWriter, *Request)
+    }
 
-    func (h Handler) ServeHTTP
+    type Greeting string
+
+    func (h Greeting) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+
+    }
+
+: Anything that implements ServeHTTP can act as an http.Handler
 
 
-* JSON encoding
+* Using interfaces
 
+.code -edit simpleserver.go
+
+* JSON
+
+.play -edit jsonencoding.go /^func main/,/^}/
 
 * Time parsing
 
@@ -50,7 +77,6 @@ Concurrency, channels
 
 * Go tools
 
-- go doc
 - go build
 - go run
 - go install
@@ -84,6 +110,16 @@ Concurrency, channels
     	server := &Server{Addr: addr, Handler: handler}
     	return server.ListenAndServe()
     }
+
+
+.link https://godoc.org/net/http#ListenAndServe
+
+or host locally with `godoc -http=:6060`
+.link http://localhost:6060/pkg/net/http/#ListenAndServe
+
+: No prescribed format
+: docs live next to code
+: docs hosted on godoc.org
 
 
 * testing
