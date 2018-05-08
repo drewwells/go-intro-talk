@@ -48,16 +48,7 @@ Concurrency
 
 * Interfaces
 
-    // Handler defined in the net/http package
-    type Handler interface {
-        ServeHTTP(ResponseWriter, *Request)
-    }
-
-    type Greeting string
-
-    func (h Greeting) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-
-    }
+.play -edit interface.go
 
 : Anything that implements ServeHTTP can act as an http.Handler
 
