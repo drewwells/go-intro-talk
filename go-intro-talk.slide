@@ -18,25 +18,23 @@ Concurrency
 : Structurally typed - enables interfaces
 : Language kept purposely small all founders had to give thumbs up to include a feature
 : Goroutines, channels
-
-* Hello World
-
-.play -edit starter.go
-
-
 * file.go dissected
 
 - package
 
     package main
 
-- exported types
+- imports
 
-    type MyString string // public
+    import "fmt"
+
+- types
+
+    type MyString string // exported
 
     type mystring string // private
 
-    fmt.Println // public method
+    fmt.Println() // public method
 
 : Exported types are defined by their casing
 : One of my favorite things about Go
@@ -46,6 +44,15 @@ Concurrency
     var text string = "Welcome to Go"
     text := "Welcome to Go"
 
+
+* Hello World
+
+.play -edit starter.go
+
+: package main means func main() is required
+: main is executed after variable, func initialization and any init() containers are run
+: variable assignment :=
+
 * Interfaces
 
 .play -edit interface/main.go
@@ -54,19 +61,7 @@ Concurrency
 
 * Enforce Interfaces
 
-
-    // from fmt.Stringer
-    type Stringer interface {
-        String() string
-    }
-
-    var _ fmt.Stringer = Greeting("")
-
-    type Greeting string
-
-    func (h Greeting) String() string {
-        return fmt.Sprintf("Greeting, %s", string(h))
-    }
+.play -edit interface/enforce.go
 
 .link https://golang.org/pkg/fmt/#Stringer
 
