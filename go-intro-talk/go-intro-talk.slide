@@ -20,29 +20,35 @@ Concurrency
 : Goroutines, channels
 * file.go dissected
 
-- package
-
+    // Package main declares the name of this package
     package main
 
-- imports
-
+    // Import lists any dependent packages required to build
+    // this file
     import "fmt"
 
-- types
+    var MyString string // exported global variable
 
-    type MyString string // exported
+    var (
+        MyOtherString string
+    )
 
-    type mystring string // private
+    // main tells the compiler how to start your program and
+    // when to exit
+    func main() {
 
-    fmt.Println() // public method
+        var text string = "Welcome to Go"
+        otherText := "Welcome to Go"
+        otherText = "Reassignment"
+    }
 
 : Exported types are defined by their casing
+: encapsulation with casing
 : One of my favorite things about Go
 
-- variable assignment
+* Encapsulation
 
-    var text string = "Welcome to Go"
-    text := "Welcome to Go"
+.code -edit oo/main.go
 
 
 * Hello World
