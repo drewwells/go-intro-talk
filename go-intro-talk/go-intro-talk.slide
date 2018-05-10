@@ -135,6 +135,7 @@ or host locally with `godoc -http=:6060`
 
 * testing
 
+.code -edit interface/main_test.go
 
 * Using testable examples
 
