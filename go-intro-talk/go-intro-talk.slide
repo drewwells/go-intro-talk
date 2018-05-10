@@ -61,7 +61,7 @@ Concurrency
 
 * Enforce Interfaces
 
-.play -edit interface/enforce.go
+.play -edit enforce/main.go
 
 .link https://golang.org/pkg/fmt/#Stringer
 

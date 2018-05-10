@@ -1,5 +1,3 @@
-application: github-drewwells
-version: talks-test
 runtime: go
 api_version: go1
 
